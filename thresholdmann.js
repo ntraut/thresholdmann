@@ -681,6 +681,7 @@ const initUI = () => {
 
   document.querySelector("#panels").style.display = "flex";
   $('#tools, #direction, #overlay, #saveMask, #saveControlPoints, #loadControlPoints').show();
+  $('#footer').hide();
   $('#upload-box').removeClass('init');
 
   globals.mv.draw = function draw() {

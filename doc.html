@@ -73,9 +73,9 @@
 
       <!-- Left-top logo -->
       <div style="display:inline-block;margin:10px">
-        <a href="https://neuroanatomy.github.io" target="_blank" ><img src="./img/naat-bw.svg" style="width:22px;position:relative;top:2px;" /></a>
+        <a href="https://neuroanatomy.github.io" target="_blank" ><img src="./img/naat-bw.svg" style="width:46px;position:relative;top:-7px;" /></a>
         <a href="/" style="text-decoration:none;">
-          <span style="font-family: 'Montserrat', sans-serif;color:white;font-size:24px; font-weight:200;padding-left:6px;">Thresholdmann</span>
+          <span style="font-family: 'Montserrat', sans-serif;color:white;font-size:24px; font-weight:200;padding-left:6px;vertical-align:top;">Thresholdmann</span>
         </a>
       </div>
     </div>
@@ -86,18 +86,21 @@
       <div class="doc">
         <h1>Documentation</h1>
         <p>
-          <b>Load & navigate data.</b> To load your data, simply drag and drop your nifti volume (.nii.gz or .nii) onto the upload box. Your MRI will appear in a stereotaxic viewer with an initial threshold mask overlayed. Navigate through slices using the slider below the viewer and switch view planes using the buttons.
+          <b>Load & navigate data.</b> To load your data, simply drag and drop your nifti volume (.nii.gz or .nii) onto the upload box. Your MRI will appear in a stereotaxic viewer where you can navigate through slices using the slider below the viewer and switch view planes using the buttons. The viewer is initialised with one control point at the center of the MRI volume, producing a local threshold. You can then adjust the  threshold, switch threshold direction, move the control point or add more. Adding more control points will create a space-varying threshold obtained through radial basis function interpolation.
         </p>
         <p>
           <b>Adjust threshold value.</b> Each local threshold can be adjusted in real time using its corresponding slider.
+          The viewer is updated instantaneously.
+        </p>
+        <p>
+          <b>Select the direction of thresholding.</b> Depending on your imaging modality and the mask you would like to create, set the threshold direction according to the grey value gradient that fits your needs using the Select up or Down button in the left panel. 
           The viewer is updated in real-time.
         </p>
         <p>
-          <b>Select the direction of thresholding.</b> Depending on your imaging modality and the mask you would like to create, set the threshold direction according to the grey value gradient that fits your needs. 
-          The viewer is updated in real-time.
+          <b>Move control point.</b>  To move a control point, select the Move tool in the left panel (shortcut M), and drag the contol point into the desired position across the viewer. The threshold mask is updated in real-time, 
         </p>
         <p>
-          <b>Add control points.</b> The viewer is initialised with one control point at the center of the MRI volume. To add another control point, select the Add tool in the left panel (shortcut A), and click in the desired position in the viewer. This produces a space-varying threshold obtained through radial basis function interpolation. You can then adjust the local threshold.
+          <b>Add control points.</b> Select the Add tool in the left panel (shortcut A), and click in the desired position in the viewer. The control point will be set with the same threshold as the previous control point, and the corresponding slider setting, which can then be further adjusted. So, for example, you can set one control point outside the brain tissue, and decrease its value to exclude the background from your mask. You can then easily add more points outside of the brain, which will have the same settings. Similarly, if you set one control point inside the brain tissue to a good value, you can then add more points in other parts of the brain or across slices that should have a good initial value for inclusion into the mask.
         </p>
         <p>
           <b>Select a control point.</b> Click the Select tool in the left panel (shortcut S) and then in the viewer click on the control point you want to select. Its corresponding threshold slider will be selected automatically.
@@ -110,10 +113,13 @@
           <b>Adjust mask opacity.</b> Select the opacity slider <img src="./img/alpha.svg" width="15px;"> in the left panel to change the opacity of the thresholded mask on the fly.
         </p>
         <p>
-          <b>Adjust MRI contrast & brightness.</b> Select the contrast <img src="./img/adjust.svg" width="15px"> or brightness slider <img src="./img/sun-o.svg" width="15px"> in the left panel to interactively adjust contrast and brightness of the imaging data.
+          <b>Adjust MRI contrast & brightness.</b> Select the contrast <img src="./img/adjust.svg" width="15px"> or brightness slider <img src="./img/sun-o.svg" width="15px"> in the left panel to interactively adjust contrast and brightness of the imaging data. Please note: The MRI data won't be changed, it is just the viewer.
         </p>
         <p>
-          <b>3D render.</b> Select the 3D render tool in the left panel to compute the 3D model of your mask on the fly and view it in an interactive 3D viewer. It will open in a separate browser window where you can zoom in and out and rotate the 3D object for inspection.
+          <b>3D render.</b> Select the 3D render tool in the left panel to compute a 3D model of your mask on the fly and view it in an interactive 3D viewer. It will open in a separate browser window where you can zoom in and out and rotate the 3D object for inspection.
+        </p>
+        <p>
+          <b>View Threshold Value.</b> Select Threshold value in the left panel to view the threshold value corresponding to the current mask. These volumes are updated in real time and can both be inspected and modified interactively.<br />
         </p>
         <p>
           <b>Saving.</b> Save the control points together with your mask nifti volume for a fully reproducible workflow.<br />
@@ -122,9 +128,6 @@
         </p>
         <p>
           <b>Load Control Points.</b> Load a list of control points from a json file. Please note that this replaces the current control points in case you placed some.
-        </p>
-        <p>
-          <b>View Threshold Value.</b> Select Threshold value in the left panel to view the threshold value corresponding to the current mask. These volumes are updated in real time and can both be inspected interactively.<br />
         </p>
         <p>
           <b>Load new MRI file.</b> Simply reload the webpage to start working with a new MRI.<br />

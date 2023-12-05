@@ -2,7 +2,7 @@
 
 A Web tool for interactively creating adaptive thresholds to segment MRI data.
 
-Katja Heuer & Roberto Toro, April 2018
+Katja Heuer, Nicolas Traut & Roberto Toro, November 2023
 
 [![CircleCI](https://circleci.com/gh/neuroanatomy/thresholdmann.svg?style=shield)](https://circleci.com/gh/neuroanatomy/thresholdmann)
 

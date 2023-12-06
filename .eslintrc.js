@@ -1,5 +1,11 @@
 module.exports = {
-  "extends": [
-    "naat"
+  'extends': ['naat'],
+  'overrides': [
+    {
+      files: ['test.mjs'],
+      'env': {
+        'mocha': true
+      }
+    }
   ]
-}
+};

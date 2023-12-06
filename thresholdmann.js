@@ -755,7 +755,7 @@ const _display = async () => {
   }
 };
 
-const init = async (file) => {
+window.init = async (file) => {
   _newMRIViewer({file});
   await _display();
   initUI();
@@ -772,7 +772,7 @@ const loadNifti = () => {
   input.onchange = function () {
     const [file] = this.files;
     console.log('loading', file);
-    init(file);
+    window.init(file);
   };
   input.click();
 };
@@ -784,7 +784,7 @@ const loadNifti = () => {
  * @returns {void}
  */
 // eslint-disable-next-line no-unused-vars
-const initWithPath = async (path) => {
+window.initWithPath = async (path) => {
   _newMRIViewer({path});
   await _display();
   initUI();

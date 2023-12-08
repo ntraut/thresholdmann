@@ -84,14 +84,14 @@
     <!-- Documentation -->
     <div id="text-container" style="display: flex">
       <div class="doc">
-        <h1>Documentation</h1>
-        <p>Interface overview | Functionalities | Workflow example</p>
-        <h2 style="padding-top:20px;padding-bottom:10px;">Thresholdmann interface overview</h2>
+        <h1 style="padding-bottom:20px;">Documentation</h1>
+        <p><a href="#interface" style="color:white;text-decoration:none;">Interface overview</a> | <a href="#functionalities" style="color:white;text-decoration:none;">Functionalities</a> | <a href="#workflow" style="color:white;text-decoration:none;">Workflow example</a></p>
+        <h2 id="interface" style="padding-top:20px;padding-bottom:10px;">Thresholdmann interface overview</h2>
         <img style="max-width:700px;padding-top:0px;padding-bottom:3px;padding-right:25px;padding-left:0px;" src="https://raw.githubusercontent.com/neuroanatomy/thresholdmann/master/img/thresholdmann_fig1_dark.png" alt=""/>
         <p style="padding-left:26px;padding-right:26px;font-size:12px;text-indent: 0rem;">
           <b>Thresholdmann interface and 3D viewer.</b> The <b>left panel</b> allows to select different control point actions, set the thresholding direction, switch between the threshold mask or value view, open the 3D viewer, load or save the work, change the opacity of the mask, the brightness and contrast of the MRI, and information about the imaging data. The <b>central panel</b> is a stereotaxic viewer which allows you to move through the slices using the slider at the bottom, to switch between the 3 stereotaxic planes, and to interactively set, move or remove control points. You can view the threshold mask, or the corresponding threshold value space. The <b>right panel</b> shows for each control point the stereotaxic coordinates, an adjustment slider to change the local threshold, and the threshold value. The selected control point is highlighted in the panel and the viewer jumps to the corresponding slice. The <b>interactive 3D viewer</b> opens in a separate browser window. <br />
         </p>
-        <h2 style="padding-top:20px;padding-bottom:20px;;">Functionalities</h2>
+        <h2 id="functionalities" style="padding-top:20px;padding-bottom:20px;">Functionalities</h2>
         <p>
           <b>Load and navigate data.</b> To load your data, drag and drop your Nifti volume (.nii.gz or .nii) onto the upload box. Your MRI will appear in a stereotaxic viewer where you can navigate through slices using the slider below the viewer and switch view planes using the buttons. The viewer is initialised with one control point at the centre of the MRI volume, producing a local threshold. You can then adjust the threshold, switch threshold direction, move the control point or add more. Adding more control points will create a space-varying threshold obtained by interpolation of all control points.
         </p>
@@ -142,7 +142,7 @@
           <b>Reproduce the workflow offline.</b> Once you downloaded the control points, you will be able to reproduce the thresholded mask volume using the <a href="https://github.com/neuroanatomy/thresholdmann/blob/master/thresholdmann.py" style="color:white;" target="_blank">thresholdmann.py</a>  script. It will take the source MRI, and the thresholdmann.json control points file to produce the mask volume, as in <br /><code style="font-family: 'Share Tech Mono';line-height:2.1">python thresholdmann.py input_nifti controlpoints_file output_nifti</code>.<br />
         </p>
         
-        <h2 style="padding-top:20px;padding-bottom:0px;;">Workflow example</h2>
+        <h2 id="workflow" style="padding-top:20px;padding-bottom:0px;">Workflow example</h2>
         <img style="max-width:700px;padding-top:25px;padding-bottom:3px;padding-right:25px;padding-left:7px;" src="https://raw.githubusercontent.com/neuroanatomy/thresholdmann/master/img/thresholdmann_fig2_dark.png" alt=""/>
         <p style="padding-left:26px;padding-right:26px;font-size:12px;text-indent: 0rem;">
           <b>Thresholdmann interface and workflow.</b> Control points (blue dots) are added by clicking at the desired position in the viewer. This adds a slider to the right, which can be used to locally adapt the threshold. Progressively add control points to create a mask of the brain. The image shows this process for a macaque brain from Prime-DE site "amu" (<a href="https://zenodo.org/records/3402457" style="color:white;" target="_blank">Brochier et al. 2019</a>, <a href="https://doi.org/10.1016/j.neuron.2019.12.023" style="color:white;" target="_blank">Milham et al. 2020</a>).<br />

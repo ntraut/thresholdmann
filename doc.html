@@ -93,18 +93,17 @@
         </p>
         <h2 style="padding-top:20px;padding-bottom:20px;;">Functionalities</h2>
         <p>
-          <b>Load & navigate data.</b> To load your data, simply drag and drop your nifti volume (.nii.gz or .nii) onto the upload box. Your MRI will appear in a stereotaxic viewer where you can navigate through slices using the slider below the viewer and switch view planes using the buttons. The viewer is initialised with one control point at the centre of the MRI volume, producing a local threshold. You can then adjust the  threshold, switch threshold direction, move the control point or add more. Adding more control points will create a space-varying threshold obtained through radial basis function interpolation.
+          <b>Load and navigate data.</b> To load your data, drag and drop your Nifti volume (.nii.gz or .nii) onto the upload box. Your MRI will appear in a stereotaxic viewer where you can navigate through slices using the slider below the viewer and switch view planes using the buttons. The viewer is initialised with one control point at the centre of the MRI volume, producing a local threshold. You can then adjust the threshold, switch threshold direction, move the control point or add more. Adding more control points will create a space-varying threshold obtained by interpolation of all control points.
         </p>
         <p>
-          <b>Adjust threshold value.</b> Each local threshold can be adjusted in real time using its corresponding slider.
-          The viewer is updated instantaneously.
+          <b>Adjust threshold value.</b> Each local threshold can be adjusted in real time using its corresponding slider, or by entering a numerical value. The viewer is updated instantaneously.
         </p>
         <p>
           <b>Select the direction of thresholding.</b> Depending on your imaging modality and the mask you would like to create, set the threshold direction according to the grey value gradient that fits your needs using the Select up or Down button in the left panel. 
           The viewer is updated in real-time.
         </p>
         <p>
-          <b>Move control point.</b>  To move a control point, select the Move tool in the left panel (shortcut M), and drag the control point into the desired position across the viewer. The threshold mask is updated in real-time, 
+          <b>Move control point.</b>  To move a control point, select the Move tool in the left panel (shortcut M), and drag the control point into the desired position across the viewer. The threshold mask is updated in real-time. 
         </p>
         <p>
           <b>Add control points.</b> Select the Add tool in the left panel (shortcut A), and click in the desired position in the viewer. The control point will be set with the same threshold as the previous control point, and the corresponding slider setting, which can then be further adjusted. So, for example, you can set one control point outside the brain tissue, and decrease its value to exclude the background from your mask. You can then easily add more points outside of the brain, which will have the same settings. Similarly, if you set one control point inside the brain tissue to a good value, you can then add more points in other parts of the brain or across slices that should have a good initial value for inclusion into the mask.
@@ -117,10 +116,10 @@
           <b>Remove a control point.</b> Select the Remove tool in the left panel (shortcut R) and then in the viewer click on the control point you want to remove.
         </p>
         <p>
-          <b>Adjust mask opacity.</b> Select the opacity slider <img src="./img/alpha.svg" width="15px;"> in the left panel to change the opacity of the thresholded mask on the fly.
+          <b>Adjust mask opacity.</b> Select the opacity slider <img src="./img/alpha.svg" width="15px;"> in the left panel to change the opacity of the thresholded mask.
         </p>
         <p>
-          <b>Adjust MRI contrast & brightness.</b> Select the contrast <img src="./img/adjust.svg" width="15px"> or brightness slider <img src="./img/sun-o.svg" width="15px"> in the left panel to interactively adjust contrast and brightness of the imaging data. Please note: The MRI data won't be changed, it is just the viewer.
+          <b>Adjust MRI contrast and brightness.</b> Select the contrast <img src="./img/adjust.svg" width="15px"> or brightness slider <img src="./img/sun-o.svg" width="15px"> in the left panel to interactively adjust contrast and brightness of the imaging data. Please note: The MRI data won't be changed, it is just the viewer.
         </p>
         <p>
           <b>3D render.</b> Select the 3D render tool in the left panel to compute a 3D model of your mask on the fly and view it in an interactive 3D viewer. It will open in a separate browser window where you can zoom in and out and rotate the 3D object for inspection.
@@ -129,9 +128,9 @@
           <b>View Threshold Value.</b> Select Threshold value in the left panel to view the threshold value corresponding to the current mask. These volumes are updated in real time and can both be inspected and modified interactively.<br />
         </p>
         <p>
-          <b>Saving.</b> Save the control points together with your mask nifti volume for a fully reproducible workflow.<br />
+          <b>Saving.</b> Save the control points together with your mask Nifti volume for a fully reproducible workflow.<br />
           <p2 style="font-weight: 400;">Save Control Points</p2> saves a list of the current control points to a json file.<br />
-          <p2 style="font-weight: 400;">Save Mask</p2> saves the thresholded mask of the current MRI in nifti format. Depending on the size of your volume, the save may take a moment. The save progress is displayed below the viewer and you need to click "Download" once the popup appears in your browser window. (If you leave the window unattended, the save will disappear after a moment 🙃).
+          <p2 style="font-weight: 400;">Save Mask</p2> saves the thresholded mask of the current MRI in Nifti format. Depending on the size of your volume, the save may take a moment. The save progress is displayed below the viewer and you need to click "Download" once the popup appears in your browser window. (If you leave the window unattended, the save will disappear after a moment 🙃).
         </p>
         <p>
           <b>Load Control Points.</b> Load a list of control points from a json file. Please note that this replaces the current control points in case you placed some.
@@ -146,7 +145,7 @@
         <h2 style="padding-top:20px;padding-bottom:0px;;">Workflow example</h2>
         <img style="max-width:700px;padding-top:25px;padding-bottom:3px;padding-right:25px;padding-left:7px;" src="https://raw.githubusercontent.com/neuroanatomy/thresholdmann/master/img/thresholdmann_fig2_dark.png" alt=""/>
         <p style="padding-left:26px;padding-right:26px;font-size:12px;text-indent: 0rem;">
-          <b>Thresholdmann interface and workflow.</b> Control points (blue dots) are added by clicking at the desired position in the viewer. This adds a slider to the right, which can be used to locally adapt the threshold. Progressively add control points to create a mask of the brain.<br />
+          <b>Thresholdmann interface and workflow.</b> Control points (blue dots) are added by clicking at the desired position in the viewer. This adds a slider to the right, which can be used to locally adapt the threshold. Progressively add control points to create a mask of the brain. The image shows this process for a macaque brain from Prime-DE site "amu" (<a href="https://zenodo.org/records/3402457">Brochier et al. 2019</a>, <a href="https://doi.org/10.1016/j.neuron.2019.12.023">Milham et al. 2020</a>).<br />
         </p>
         <img style="max-width:700px;padding-top:30px;padding-bottom:3px;padding-left:25px;padding-right:25px;" src="https://raw.githubusercontent.com/neuroanatomy/thresholdmann/master/img/thresholdmann_fig3_dark.png" alt=""/>
         <p style="padding-left:26px;padding-right:26px;font-size:12px;text-indent: 0rem;">
@@ -154,7 +153,7 @@
         </p>
         <img style="max-width:700px;padding-top:30px;padding-bottom:3px;padding-left:25px;padding-right:25px;" src="https://raw.githubusercontent.com/neuroanatomy/thresholdmann/master/img/thresholdmann_fig4_dark.png" alt=""/>
         <p style="padding-left:26px;padding-right:26px;font-size:12px;text-indent: 0rem;">
-          <b>Thresholdmann result.</b> Download the mask created based on your set of control points. Make sure that the brain region was sufficiently disjoint from the rest of the head so that a mathematical morphology closing will be enough to completely separate it. This will give you a mask like shown in this image with its reconstructed surface as an example.<br /><br /><br />
+          <b>Thresholdmann result.</b> Download the mask created based on your set of control points. Make sure that the brain region is sufficiently disjoint from the rest of the head so that a mathematical morphology closing will be enough to completely separate it. This will give you a mask like shown in this image with its reconstructed surface as an example.<br /><br /><br />
         </p>
 
       </div>

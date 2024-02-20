@@ -626,22 +626,22 @@ const initKeyboardShortcuts = () => {
     case 's':
       globals.selectedTool = 'Select';
       document.querySelector('#tools').querySelector('.mui-pressed').classList.remove('mui-pressed');
-      document.querySelector('#tools').querySelector('[title="Select"').classList.add('mui-pressed');
+      document.querySelector('#tools').querySelector('[title="Select"]').classList.add('mui-pressed');
       break;
     case 'a':
       globals.selectedTool = 'Add';
       document.querySelector('#tools').querySelector('.mui-pressed').classList.remove('mui-pressed');
-      document.querySelector('#tools').querySelector('[title="Add"').classList.add('mui-pressed');
+      document.querySelector('#tools').querySelector('[title="Add"]').classList.add('mui-pressed');
       break;
     case 'r':
       globals.selectedTool = 'Remove';
       document.querySelector('#tools').querySelector('.mui-pressed').classList.remove('mui-pressed');
-      document.querySelector('#tools').querySelector('[title="Remove"').classList.add('mui-pressed');
+      document.querySelector('#tools').querySelector('[title="Remove"]').classList.add('mui-pressed');
       break;
     case 'm':
       globals.selectedTool = 'Move';
       document.querySelector('#tools').querySelector('.mui-pressed').classList.remove('mui-pressed');
-      document.querySelector('#tools').querySelector('[title="Move"').classList.add('mui-pressed');
+      document.querySelector('#tools').querySelector('[title="Move"]').classList.add('mui-pressed');
       break;
     }
   });

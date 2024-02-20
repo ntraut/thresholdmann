@@ -1,20 +1,30 @@
 import assert from 'assert';
 
-import puppeteer from 'puppeteer';
+import { chromium, firefox, webkit } from '@playwright/test';
 
 describe('Test Thresholdmann', () => {
-  let browser, page;
+  const browsers = [
+    chromium,
+    firefox,
+    webkit
+  ]
+
+  browsers.forEach((browser) => {
+  describe(`With ${browser.name()} browser`, () => {
+
+  let page, context;
   let sdim;
 
-  before(async function () {
+  before(async function() {
     // eslint-disable-next-line no-invalid-this
     this.timeout(5000);
-    browser = await puppeteer.launch({ headless: 'new' });
+    browser = await browser.launch({headless: true});
+    context = await browser.newContext()
     page = await browser.newPage();
     // page.on('console', (msg) => {
     //   console.log(`PAGE ${msg.type().toUpperCase()}: ${msg.text()}`);
     // });
-    await page.setViewport({ width: 1200, height: 800 });
+    await page.setViewportSize({width: 1200, height: 800});
     await page.goto('http://127.0.0.1:8080');
   });
 
@@ -140,6 +150,8 @@ describe('Test Thresholdmann', () => {
         assert.strictEqual(points.length, 1);
       });
     });
+  });
+  });
   });
 });
 

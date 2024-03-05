@@ -493,36 +493,6 @@ const saveMask = () => {
   thresholdJob();
 };
 
-/** Save the selection mask produced by the
- * threshold, but in the main thread.
- * @deprecated
- * @returns {void}
- */
-// eslint-disable-next-line no-unused-vars
-const saveMaskOLD = () => {
-  const {mv, interpolate} = globals;
-  const [dim] = mv.mri;
-  const data = new Float32Array(dim[0] * dim[1] * dim[2]);
-  let val;
-  let i, j, k;
-  let ijk;
-  for (i = 0; i < dim[0]; i++) {
-    for (j = 0; j < dim[1]; j++) {
-      for (k = 0; k < dim[2]; k++) {
-        ijk = k * dim[1] * dim[0] + j * dim[0] + i;
-        val = interpolate([i, j, k]) * mv.maxValue / 255;
-
-        if (mv.mri.data[ijk] <= val) {
-          data[ijk] = 0;
-        } else {
-          data[ijk] = 1;
-        }
-      }
-    }
-  }
-  saveNifti(data);
-};
-
 const saveControlPoints = () => {
   const a = document.createElement('a');
   const {points, values} = globals;

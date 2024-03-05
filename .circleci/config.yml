@@ -7,9 +7,5 @@ jobs:
       - checkout
       - run: npm install
       - run:
-          name: Run server in background
-          command: 'npm start'
-          background: true
-      - run:
           name: Run tests
           command: 'npm test'

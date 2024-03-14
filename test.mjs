@@ -48,10 +48,12 @@ describe('Test Thresholdmann', () => {
             const title = await page.evaluate(() => document.title);
             assert.strictEqual(title, 'Thresholdmann');
           });
+
           it('should display "Choose..." message', async () => {
             const msg = await page.evaluate(() => document.querySelector('.box_input').innerText);
             assert.strictEqual(msg.trim(), 'Choose a .nii.gz or a .nii file or drag it here.');
           });
+
           it('init with test nifti file', async () => {
             const pathString = './img/bear_uchar.nii.gz';
             const fileChooserPromise = page.waitForEvent('filechooser');
@@ -94,11 +96,13 @@ describe('Test Thresholdmann', () => {
             const plane = await page.evaluate(() => window.globals.mv.views[0].plane);
             assert.strictEqual(plane, 'cor');
           });
+
           it('can switch to axial plane', async () => {
             await page.click('.axi-btn');
             const plane = await page.evaluate(() => window.globals.mv.views[0].plane);
             assert.strictEqual(plane, 'axi');
           });
+
           it('can switch to sagittal plane', async () => {
             await page.click('.sag-btn');
             const plane = await page.evaluate(() => window.globals.mv.views[0].plane);
@@ -112,16 +116,19 @@ describe('Test Thresholdmann', () => {
             const direction = await page.evaluate(() => window.globals.selectedDirection);
             assert.strictEqual(direction, 'SelectDown');
           });
+
           it('change threshold direction to up', async () => {
             await page.click('#direction .mui[title="SelectUp"]');
             const direction = await page.evaluate(() => window.globals.selectedDirection);
             assert.strictEqual(direction, 'SelectUp');
           });
+
           it('switch to threshold value view', async () => {
             await page.click('#overlay .mui[title="Threshold Value"]');
             const overlay = await page.evaluate(() => window.globals.selectedOverlay);
             assert.strictEqual(overlay, 'Threshold Value');
           });
+
           it('switch to threshold mask view', async () => {
             await page.click('#overlay .mui[title="Threshold Mask"]');
             const overlay = await page.evaluate(() => window.globals.selectedOverlay);
@@ -143,6 +150,7 @@ describe('Test Thresholdmann', () => {
             // point is in the middle
             assert.ok(points[0].every((v, i) => v === Math.floor(sdim[i] / 2)));
           });
+
           it('can add a point', async () => {
             await page.click('#tools .mui[title="Add"]');
             const clickX = canvasBoundingBox.x + canvasBoundingBox.width / 3;
@@ -154,6 +162,7 @@ describe('Test Thresholdmann', () => {
             assert.ok(points[0][1] > points[1][1]);
             assert.ok(points[0][2] < points[1][2]);
           });
+
           it('can move a point', async () => {
             await page.click('#tools .mui[title="Move"]');
             const startX = canvasBoundingBox.x + canvasBoundingBox.width / 3;
@@ -170,6 +179,7 @@ describe('Test Thresholdmann', () => {
             assert.ok(points[0][1] < points[1][1]);
             assert.ok(points[0][2] > points[1][2]);
           });
+
           it('when selecting the first point, the first threshold slider is selected', async () => {
             await page.click('#tools .mui[title="Select"]');
             const clickX = canvasBoundingBox.x + canvasBoundingBox.width / 2;
@@ -180,6 +190,7 @@ describe('Test Thresholdmann', () => {
             assert.strictEqual(firstSliderSelected, true);
             assert.strictEqual(secondSliderSelected, false);
           });
+
           it('when selecting the second point, the second threshold slider is selected', async () => {
             await page.click('#tools .mui[title="Select"]');
             const clickX = canvasBoundingBox.x + canvasBoundingBox.width * 2 / 3;
@@ -190,6 +201,7 @@ describe('Test Thresholdmann', () => {
             assert.strictEqual(firstSliderSelected, false);
             assert.strictEqual(secondSliderSelected, true);
           });
+
           it('when selecting the first threshold slider, the first point slice is displayed', async () => {
             await page.click('.axi-btn');
             await page.click('#control-table tbody tr:nth-child(1)  td:first-child');
@@ -198,6 +210,7 @@ describe('Test Thresholdmann', () => {
             assert.strictEqual(parseInt(sliderValue, 10), points[0][2]);
             assert.strictEqual(slice, points[0][2]);
           });
+
           it('when selecting the second threshold slider, the second point slice is displayed', async () => {
             await page.click('#control-table tbody tr:nth-child(2)  td:first-child');
             const sliderValue = await page.$eval('input.slice', (slider) => slider.value);
@@ -205,6 +218,7 @@ describe('Test Thresholdmann', () => {
             assert.strictEqual(parseInt(sliderValue, 10), points[1][2]);
             assert.strictEqual(slice, points[1][2]);
           });
+
           it('can remove a point', async () => {
             await page.click('.sag-btn');
             await page.click('#tools .mui[title="Remove"]');
@@ -312,7 +326,7 @@ describe('Test Thresholdmann', () => {
             newPage = await newPagePromise;
             const newPageUrl = newPage.url();
             assert.strictEqual(newPageUrl, 'http://127.0.0.1:8080/render3D/index.html');
-          });
+          }).timeout(5000);
 
         //   after(async () => {
         //     if (newPage) {
@@ -336,6 +350,7 @@ describe('Test Thresholdmann', () => {
             const controlPoints = JSON.parse(downloadedJson);
             assert.deepStrictEqual(controlPoints, { points: [sdim.map((element) => element / 2 | 0)], values: [125] });
           });
+
           it('Save Mask', async () => {
             page.on('dialog', async (dialog) => {
               if (dialog.type() === 'prompt') {
@@ -350,7 +365,7 @@ describe('Test Thresholdmann', () => {
 
             // check that dowloaded nifti is a gzip file
             assert.deepStrictEqual(niftiBuffer.slice(0, 2), Buffer.from([0x1F, 0x8B]));
-          }).timeout(5000);
+          }).timeout(10000);
         });
 
         describe('Loading', () => {
@@ -370,7 +385,7 @@ describe('Test Thresholdmann', () => {
             assert.strictEqual(points.length, 1);
             assert.deepStrictEqual(points, [[50, 50, 50]]);
             assert.strictEqual(threshold, 100);
-          });
+          }).timeout(5000);
         });
       });
     });

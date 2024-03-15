@@ -131,7 +131,6 @@ const voxel2canvas = (point) => {
   const height = H * width / W;
   const Hlarge = H * heightLarge / height;
   const offset = (Hlarge - H) / 2;
-  // eslint-disable-next-line new-cap
   const [i, j, k] = point;
   let slice, x, y;
   switch (plane) {
@@ -269,7 +268,6 @@ const threshold = () => {
       s = slice2volume(plane, x, y, slice, H);
       ind = y * width + x;
       _setPixelFromValue(
-        // eslint-disable-next-line new-cap
         px, ind, interpolate(/*mv.S2IJK(s)*/s), selectedOverlay);
     }
   }
@@ -318,8 +316,7 @@ const selectControlPoint = (cpid) => {
  * @param {HTMLElement} trSelected - the row element
  * @returns {void}
 */
-// eslint-disable-next-line no-unused-vars
-const selectRow = (trSelected) => {
+window.selectRow = (trSelected) => {
   // select the table row
   document.querySelectorAll('tr.selected').forEach((tr) => {
     tr.classList.remove('selected');
@@ -359,11 +356,10 @@ const selectRow = (trSelected) => {
 
 /** Handle changes in threshold triggered by the sliders
  * in the control points table.
- * @param {HTMLElement} ob - the slider element
+ * @param {HTMLElement} ev - the slider element
  * @returns {void}
  */
-// eslint-disable-next-line no-unused-vars
-const changeThreshold = (ev) => {
+window.changeThreshold = (ev) => {
   ev.preventDefault();
 
   const el = ev.target;
@@ -391,8 +387,7 @@ const changeThreshold = (ev) => {
   }
 };
 
-// eslint-disable-next-line no-unused-vars
-const inputThreshold = (ob) => {
+window.inputThreshold = (ob) => {
   const {mv} = globals;
   const val = parseFloat(ob.value);
   const tr = ob.closest('tr');
@@ -735,8 +730,7 @@ window.init = async (file) => {
  * the HTML page.
  * @returns {void}
  */
-// eslint-disable-next-line no-unused-vars
-const loadNifti = () => {
+window.loadNifti = () => {
   const input = document.createElement('input');
   input.type = 'file';
   input.onchange = function () {
@@ -753,7 +747,6 @@ const loadNifti = () => {
  * @param {string} path - the path to the Nifti file
  * @returns {void}
  */
-// eslint-disable-next-line no-unused-vars
 window.initWithPath = async (path) => {
   _newMRIViewer({path});
   await _display();
@@ -765,24 +758,10 @@ window.initWithPath = async (path) => {
  * @param {Event} ev - the event
  * @returns {void}
  */
-// eslint-disable-next-line no-unused-vars
-const changeAlpha = (ev) => {
+window.changeAlpha = (ev) => {
   const newAlpha = Number(ev.target.value) / 100;
   globals.alpha = newAlpha;
   globals.mv.draw();
-};
-
-/** Adjust the brightness of the brain MRI. This
- * function is called from the HTML page.
- * @param {Event} ev - the event
- * @returns {void}
- */
-// eslint-disable-next-line no-unused-vars
-const changeBrightness = (ev) => {
-  const {brightness} = globals;
-  const contrast = Number(ev.target.value) / 100;
-  globals.contrast = contrast;
-  document.querySelector('canvas.viewer').style.filter = `brightness(${brightness}) contrast(${contrast})`;
 };
 
 /** Adjust the contrast of the brain MRI. This
@@ -790,8 +769,19 @@ const changeBrightness = (ev) => {
  * @param {Event} ev - the event
  * @returns {void}
  */
-// eslint-disable-next-line no-unused-vars
-const changeContrast = (ev) => {
+window.changeContrast = (ev) => {
+  const {brightness} = globals;
+  const contrast = Number(ev.target.value) / 100;
+  globals.contrast = contrast;
+  document.querySelector('canvas.viewer').style.filter = `brightness(${brightness}) contrast(${contrast})`;
+};
+
+/** Adjust the brightness of the brain MRI. This
+ * function is called from the HTML page.
+ * @param {Event} ev - the event
+ * @returns {void}
+ */
+window.changeBrightness = (ev) => {
   const brightness = Number(ev.target.value) / 100;
   const {contrast} = globals;
   globals.brightness = brightness;

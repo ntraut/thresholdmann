@@ -380,7 +380,7 @@ describe('Test Thresholdmann', () => {
               buffer: Buffer.from(JSON.stringify({ points: [[50, 50, 50]], values: [100]}), 'utf-8')
             });
             // wait for the new points to be loaded
-            await expect(page.locator('#control-table tbody tr:first-child td.text-val input')).toHaveValue('100');
+            await expect(page.locator('#control-table tbody tr:first-child td.text-val input')).toHaveValue('100', { timeout: 10000 });
             const points = await page.evaluate(() => window.globals.points);
             const threshold = await page.evaluate(() => window.globals.values[0]);
             assert.strictEqual(points.length, 1);

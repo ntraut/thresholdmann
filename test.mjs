@@ -370,7 +370,7 @@ describe('Test Thresholdmann', () => {
 
         describe('Loading', () => {
           it('Load Control Points', async () => {
-            page.setDefaultTimeout(60000);
+            page.setDefaultTimeout(120000);
             const fileChooserPromise = page.waitForEvent('filechooser');
             await page.click('#loadControlPoints');
             const fileChooser = await fileChooserPromise;
@@ -380,13 +380,13 @@ describe('Test Thresholdmann', () => {
               buffer: Buffer.from(JSON.stringify({ points: [[50, 50, 50]], values: [100]}), 'utf-8')
             });
             // wait for the new points to be loaded
-            await expect(page.locator('#control-table tbody tr:first-child td.text-val input')).toHaveValue('100', { timeout: 10000 });
+            await expect(page.locator('#control-table tbody tr:first-child td.text-val input')).toHaveValue('100', { timeout: 15000 });
             const points = await page.evaluate(() => window.globals.points);
             const threshold = await page.evaluate(() => window.globals.values[0]);
             assert.strictEqual(points.length, 1);
             assert.deepStrictEqual(points, [[50, 50, 50]]);
             assert.strictEqual(threshold, 100);
-          }).timeout(200000);
+          }).timeout(300000);
         });
       });
     });

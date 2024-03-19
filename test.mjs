@@ -51,7 +51,7 @@ describe('Test Thresholdmann', () => {
 
           it('should display "Choose..." message', async () => {
             const msg = await page.evaluate(() => document.querySelector('.box_input').innerText);
-            assert.strictEqual(msg.trim(), 'Choose a .nii.gz or a .nii file or drag it here.');
+            assert.strictEqual(msg.trim(), 'Choose a .nii.gz or a .nii file or drag it here. Or try this demo data of a bear brain.');
           });
 
           it('init with test nifti file', async () => {

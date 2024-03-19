@@ -20,6 +20,7 @@ You can also open a new issue to let us know about bugs, or request a new featur
 We will be happy to work with anyone who would love to join our effort.  
 
 **Test new functionalities**  
+
 If you would like to change the code, please make sure the existing tests run using ```npm install && npm run test```.  
 If you add a new functionality, please also implement new test(s) to make sure of its correct working. Thank you. 
 

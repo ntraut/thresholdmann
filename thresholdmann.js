@@ -753,6 +753,16 @@ window.initWithPath = async (path) => {
   initUI();
 };
 
+/** Load nifti data from a URL.
+ * This function is called from
+ * the HTML page.
+ * @returns {void}
+ */
+window.loadDemoData = () => {
+  const url = "img/bear_uchar.nii.gz";
+  window.initWithPath(url);
+};
+
 /** Adjust transparency of the thresholding mask. This
  * function is called from the HTML page.
  * @param {Event} ev - the event

@@ -55,7 +55,7 @@ describe('Test Thresholdmann', () => {
           });
 
           it('init with test nifti file', async () => {
-            const pathString = './img/bear_uchar.nii.gz';
+            const pathString = './public/img/bear_uchar.nii.gz';
             const fileChooserPromise = page.waitForEvent('filechooser');
             await page.click('#loadNifti');
             const fileChooser = await fileChooserPromise;

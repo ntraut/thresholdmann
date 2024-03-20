@@ -2,10 +2,10 @@
   "name": "thresholdmann",
   "version": "1.0.0",
   "description": "A Web tool for interactively creating adaptive thresholds to segment nifti images.",
-  "main": "thresholdmann.js",
+  "main": "public/thresholdmann.js",
   "scripts": {
-    "start": "http-server .",
-    "test": "npm run install:browsers; mocha --require fixtures.mjs --exit",
+    "start": "http-server public",
+    "test": "npm run install:browsers; mocha --require test/fixtures.mjs --exit",
     "install:browsers": "npx playwright install"
   },
   "repository": {
